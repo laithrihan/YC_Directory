@@ -17,7 +17,7 @@ const Navbar =async () => {
               <Link href="/startup/create">
                 <span>Create</span>
               </Link>
-              <form action={async()=>{"use server" ; await signOut()}}>
+              <form action={async()=>{"use server" ; await signOut({redirectTo:'/'})}}>
                 <button type='submit'>
                   <span>Logout</span>
                 </button>
