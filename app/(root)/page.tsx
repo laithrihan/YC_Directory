@@ -1,29 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import SearchForm from "../components/SearchForm";
 import StartupCard, { StartupTypeCard } from "../components/StartupCard";
+import {client} from "@/sanity/lib/client"
 
-
-export default async function Home({searchParams,}: {searchParams: Promise<{ query?: string }>;
+export default async function Home({searchParams}: {searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const posts =[
-    {
-      _createdAt:new Date(),
-      views:55,
-      author:{
-              _id:1 ,
-              name:'Mike' ,
-              image :"https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            },
-      _id:1,
-      description:'this is the discriotios',
-      image:'https://images.unsplash.com/photo-1593376893114-1aed528d80cf?q=80&w=2030&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      category:'Robots',
-      title:'We Robots',
-    }
-  ] 
-
-  return (
+  const posts = await client.fetch (STARTUPS_QUERY)
+  
+  return ( 
     <div>
       <section className=" pink_container">
       <h1 className="heading">

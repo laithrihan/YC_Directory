@@ -4,8 +4,10 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import { Button } from './ui/button';
+import { Startup , Author } from '@/sanity/types';
 
 
+export type StartupTypeCard = Omit<Startup,"author"> &{author?: Author}
 const StartupCard = ({post}:{post:StartupTypeCard}) => {
   return (
     <li className='startup-card group'>
@@ -32,7 +34,7 @@ const StartupCard = ({post}:{post:StartupTypeCard}) => {
                 </Link>
             </div>
 
-                <Link href={`/user/${post.author._id}`}>
+                <Link href={`/user/${post.author?._id}`}>
                     <Image
                         src={post.author.image}
                         alt={post.author.name!}
